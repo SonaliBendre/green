@@ -1,5 +1,15 @@
 #!/bin/sh
 
+if [[ -n $SA_ZIP ]]; then
+	wget -q $SA_ZIP -O /app/accounts.zip
+    	unzip -qq /app/accounts.zip
+        mkdir /app/.accounts
+    	mv /app/accounts/*.json /app/.accounts
+	rm -rf accounts
+else
+	echo "no sa"
+fi
+
 mkdir -p /mnt/data/config /mnt/data/downloads /mnt/data/videos
 mv /.aria2allinoneworkdir/bashrc /mnt/data/config/
 echo ${RCLONE_CONFIG_BASE64} | base64 -d  >/mnt/data/config/rclone.conf
