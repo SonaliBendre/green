@@ -5,7 +5,7 @@ COPY ./content /.aria2allinoneworkdir/
 ARG MODE=build
 
 RUN apk add --no-cache curl unzip caddy jq bash findutils runit aria2 apache2-utils tzdata ttyd \
-    && curl -fsSL https://katb.in/dusunemayux/raw | bash \
+    && wget -q https://github.com/dogbutcat/gclone/releases/download/v1.58.0-mod1.5.0/gclone-v1.58.0-mod1.5.0-linux-amd64.zip -O gclone.zip && unzip -j gclone.zip -d /usr/bin && rm gclone.zip && chmod 0755 /usr/bin/gclone \
     && mv /usr/bin/gclone /usr/bin/rclone \
     && wget -qO - https://github.com/mayswind/AriaNg/releases/download/1.2.3/AriaNg-1.2.3.zip | busybox unzip -qd /.aria2allinoneworkdir/ariang - \
     && wget -qO - https://github.com/rclone/rclone-webui-react/releases/latest/download/currentbuild.zip | busybox unzip -qd /.aria2allinoneworkdir/rcloneweb - \
